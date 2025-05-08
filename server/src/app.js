@@ -1,6 +1,6 @@
 // server/src/app.js
 import express from 'express';
-import sessionMiddleware from './middleware/sessionMiddleware.js';
+import { sessionMiddleware } from './middleware/sessionMiddleware.js';
 
 // Импортируем конфигурацию Passport — этот импорт выполнит настройку стратегии.
 import './passport/passportConfig.js';
