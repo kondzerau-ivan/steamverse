@@ -12,15 +12,15 @@ passport.use(new SteamStrategy({
   async (identifier, profile, done) => {
     try {
       const steamId = profile.id || identifier.split('/').pop();
-
+      console.log(profile);
       let user = await User.findOne({ where: { steamId } });
 
       if (!user) {
         user = await User.create({
           steamId,
-          nickName: profile.displayName || '',
-          realName: profile.realName || '',
-          avatar: profile.photos.length ? profile.photos[0].value : null,
+          nickName: profile._json.personaname || profile.displayName,
+          realName: profile._json.realname || '',
+          avatar: profile._json.avatarfull || null,
           lastLogin: new Date()
         });
       } else {
