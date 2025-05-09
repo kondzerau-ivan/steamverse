@@ -7,16 +7,17 @@ import { authRouter } from './routes/authRouter.js';
 import { profileRouter } from './routes/profileRouter.js';
 
 const app = express();
+const prefix = '/api/v1';
 
 app.use(sessionMiddleware);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', authRouter);
-app.use('/', profileRouter);
+app.use(prefix, authRouter);
+app.use(prefix, profileRouter);
 
-app.get('/', (req, res) => {
+app.get(prefix, (req, res) => {
   res.send('Привет! Если вы видите это сообщение, то Express-сервер успешно настроен.');
 });
 
