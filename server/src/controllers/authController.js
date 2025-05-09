@@ -8,5 +8,5 @@ export function steamAuthController(req, res) {
 export function steamReturnController(req, res) {
   // После успешной аутентификации информация о пользователе хранится в req.user.
   // Здесь можно добавить логику сохранения или обновления данных пользователя.
-  res.redirect('/profile');
+  res.redirect('/api/v1/profile');
 }
