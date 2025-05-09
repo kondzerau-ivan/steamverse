@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const sessionMiddleware = session({
+export const sessionMiddleware = session({
   // Используем файл secret-key, расположенный в корневой директории.
   secret: fs.readFileSync(path.join(__dirname, '../../../secret-key'), 'utf8').trim(),
   resave: false,
@@ -17,5 +17,3 @@ const sessionMiddleware = session({
     secure: false, // В продакшене используйте true (при работе через HTTPS)
   },
 });
-
-export default sessionMiddleware;

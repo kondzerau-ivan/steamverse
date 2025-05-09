@@ -1,26 +1,23 @@
 // server/src/app.js
 import express from 'express';
-import sessionMiddleware from './middleware/sessionMiddleware.js';
-
-// Импортируем конфигурацию Passport — этот импорт выполнит настройку стратегии.
+import { sessionMiddleware } from './middleware/sessionMiddleware.js';
 import './passport/passportConfig.js';
 import passport from 'passport';
-import authRoutes from './routes/authRoutes.js';
+import { authRouter } from './routes/authRouter.js';
+import { profileRouter } from './routes/profileRouter.js';
 
 const app = express();
+const prefix = '/api/v1';
 
-// Подключаем middleware для сессий
 app.use(sessionMiddleware);
 
-// Инициализируем Passport и его сессию
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Подключение маршрутов для аутентификации
-app.use(authRoutes);
+app.use(prefix, authRouter);
+app.use(prefix, profileRouter);
 
-// Простой домашний маршрут для проверки работы сервера.
-app.get('/', (req, res) => {
+app.get(prefix, (req, res) => {
   res.send('Привет! Если вы видите это сообщение, то Express-сервер успешно настроен.');
 });
 
