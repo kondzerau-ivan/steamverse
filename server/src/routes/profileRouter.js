@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ensureAuthenticated } from '../middleware/ensureAuthenticated';
+import { ensureAuthenticated } from '../middleware/ensureAuthenticated.js';
 
 export const profileRouter = Router();
 
