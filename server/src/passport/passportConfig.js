@@ -12,7 +12,6 @@ passport.use(new SteamStrategy({
   async (identifier, profile, done) => {
     try {
       const steamId = profile.id || identifier.split('/').pop();
-      console.log(profile);
       let user = await User.findOne({ where: { steamId } });
 
       if (!user) {
