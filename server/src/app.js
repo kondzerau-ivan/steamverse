@@ -5,7 +5,7 @@ import { sessionMiddleware } from './middleware/sessionMiddleware.js';
 // Импортируем конфигурацию Passport — этот импорт выполнит настройку стратегии.
 import './passport/passportConfig.js';
 import passport from 'passport';
-import authRoutes from './routes/authRoutes.js';
+import { authRouter } from './routes/authRouter.js';
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Подключение маршрутов для аутентификации
-app.use(authRoutes);
+app.use(authRouter);
 
 // Простой домашний маршрут для проверки работы сервера.
 app.get('/', (req, res) => {
